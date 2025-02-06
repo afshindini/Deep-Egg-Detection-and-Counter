@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "egg_detection_counter"
-version = "0.1.0"
+version = "0.2.0"
 description = "Detection and count eggs in an egg shell with the help of deep learning models."
 authors = ["Afshin Dini <Afshin Dini>"]
 readme = "README.md"
