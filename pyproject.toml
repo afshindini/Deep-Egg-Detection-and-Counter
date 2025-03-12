@@ -38,6 +38,7 @@ branch = true
 [tool.poetry.dependencies]
 python = "^3.10"
 click = "^8.1.7"
+opencv-python = "^4.11.0.86"
 
 
 [tool.poetry.group.dev.dependencies]
