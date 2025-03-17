@@ -12,7 +12,7 @@ poetry.lock
 
 # mypy files
 .mypy_cache/
- src/egg_detection_counter/__pycache__/
+ src/egg_detection_counter/__pycache__/*.pyc
 
 # Probable environments files
 .env
