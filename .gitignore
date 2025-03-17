@@ -19,3 +19,6 @@ poetry.lock
 .venv
 env/
 venv/
+
+# data files
+src/egg_detection_counter/data/*
