@@ -71,7 +71,7 @@ class EggInference:
         model = self.load_model()
         results = model(
             data_path,
-            save=not self.result_path,
+            save=False if not self.result_path else True,  # pylint: disable=R1719
             project=self.result_path,
             name="detections",
         )
