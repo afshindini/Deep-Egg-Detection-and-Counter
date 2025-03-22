@@ -9,9 +9,12 @@ poetry.lock
 .coverage.*
 .cache
 .pytest_cache/
+src/egg_detection_counter/__pycache__/*.pyc
+tests/__pycache__/*
 
 # mypy files
 .mypy_cache/
+
 
 # Probable environments files
 .env
@@ -19,6 +22,5 @@ poetry.lock
 env/
 venv/
 
-
-
-
+# data files
+src/egg_detection_counter/data/*
