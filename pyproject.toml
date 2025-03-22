@@ -41,6 +41,9 @@ click = "^8.1.7"
 opencv-python = "^4.11.0.86"
 ultralytics = "^8.3.91"
 datasets = "^3.4.0"
+streamlit = "^1.43.2"
+pillow = "^11.1.0"
+pandas = "^2.2.3"
 
 
 [tool.poetry.group.dev.dependencies]
