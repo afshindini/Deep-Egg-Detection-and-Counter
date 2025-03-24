@@ -25,10 +25,10 @@ jobs:
           git config --global user.name "afshindini"
           git config --global user.email "afshin_dini@yahoo.com"
 
-      - name: Remove .pt files from Git regular tracking
-        run: |
-          git rm --cached src/egg_detection_counter/model/egg_detector.pt
-          git commit -m "Remove egg_detector.pt from regular Git tracking"
+#      - name: Remove .pt files from Git regular tracking
+#        run: |
+#          git rm --cached src/egg_detection_counter/model/egg_detector.pt
+#          git commit -m "Remove egg_detector.pt from regular Git tracking"
 
       - name: Track .pt files with Git LFS
         run: |
