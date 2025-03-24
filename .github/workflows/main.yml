@@ -41,10 +41,10 @@ jobs:
           HF: ${{ secrets.HG }}
         run: git remote add space https://afshin-dini:$HF@huggingface.co/spaces/afshin-dini/Deep-Egg-Detection-and-Counter
 
-      - name: Re-add .pt files using Git LFS
-        run: |
-          git add src/egg_detection_counter/model/egg_detector.pt
-          git commit -m "Re-add egg_detector.pt using Git LFS"
+#      - name: Re-add .pt files using Git LFS
+#        run: |
+#          git add src/egg_detection_counter/model/egg_detector.pt
+#          git commit -m "Re-add egg_detector.pt using Git LFS"
 
 #      - name: reset commit
 #        run: git filter-branch --index-filter --f "git rm -rf --cached --ignore-unmatch src/egg_detection_counter/model/egg_detector.pt" HEAD
