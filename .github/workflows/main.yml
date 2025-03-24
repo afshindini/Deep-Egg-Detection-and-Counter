@@ -33,6 +33,7 @@ jobs:
       - name: Track .pt files with Git LFS
         run: |
           git lfs track "*.pt"
+          git lfs ls-files
 #          git add .gitattributes
 #          git commit -m "Track .pt files with Git LFS"
 
@@ -54,6 +55,7 @@ jobs:
         env:
           HF: ${{ secrets.HG }}
         run: |
+          git lfs ls-files
           git lfs push --all space
           git push --force space ${{ github.ref }}:main
 #        run: git push --force https://afshin-dini:$HF@huggingface.co/spaces/afshin-dini/Deep-Egg-Detection-and-Counter ${{ github.ref }}:main
