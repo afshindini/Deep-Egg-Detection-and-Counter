@@ -33,8 +33,8 @@ jobs:
       - name: Track .pt files with Git LFS
         run: |
           git lfs track "*.pt"
-          git add .gitattributes
-          git commit -m "Track .pt files with Git LFS"
+#          git add .gitattributes
+#          git commit -m "Track .pt files with Git LFS"
 
       - name: Add remote
         env:
