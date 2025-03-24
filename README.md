@@ -1,3 +1,15 @@
+---
+title: Deep Egg Detection And Counter
+emoji: ⚡
+colorFrom: green
+colorTo: pink
+sdk: streamlit
+sdk_version: 1.43.2
+app_file: app.py
+pinned: false
+license: mit
+short_description: Detect and count white and brown eggs from images
+---
 # Deep-Egg-Detection-and-Counter
 This repository allows you to detect and count eggs in an egg-shell with the help of deep learning models specifically YOLOv5.
 A labeled dataset for training this model is collected manually.
