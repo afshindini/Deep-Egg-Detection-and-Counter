@@ -61,14 +61,15 @@ The `data.yaml` file contains the class names, the path to the training and vali
 
 **NOTE:** For training, it is important to change the path to **absolute path** of the main directory where the data is located (In the above tree-structure it should be the absolute path to `data` directory.)
 
-## How to Use
+
+## How to Use Locally
 This repo can be used for fine-tuning the YOLOv8 model to detect and count eggs and also can be used for testing purposes with the current fine-tuned model.
 In order to use the model for training/testing purposes locally, one can first create a virtual environment and then install the requirements
 by running the `poetry install` command (Install poetry if you do not have it in your system from [here](https://python-poetry.org/docs/#installing-with-pipx).)
 
 ### Fine-Tuning
 YOLO model is fine-tuned with the collected dataset. In order to find-tune the model with other egg classes or repeat the whole process,
-once can download the dataset from [here](https://huggingface.co/datasets/afshin-dini/Egg-Detection) and put in the `src/egg_detection_counter/data` directory.
+one can clone this repo and download the dataset from [here](https://huggingface.co/datasets/afshin-dini/Egg-Detection) and put in the `src/egg_detection_counter/data` directory.
 Then for training or fine-tuning the model, one can run the following command:
 ```bash
 egg_detection_counter -vv train --conf_path src/egg_detection_counter/data/data.yaml --img_resize 640 --batch_size 16 --epochs 100 --device cuda
@@ -82,6 +83,11 @@ egg_detection_counter -vv infer --model_path src/egg_detection_counter/model/egg
 ```
 It is good to mention that, the `data_path` could be a directory containing images or a single image. The `result_path` is the directory where the results are saved.
 
+As an example, white and brown eggs are detected properly in the following image:
+<p align="center">
+    <img width="1000" src="./results/sample2.jpg" alt="Egg Detection">
+</p>
+
 ## Hugging Face Deployment
 The repository is also deployed in [hugging face](https://huggingface.co/spaces/afshin-dini/Deep-Egg-Detection-and-Counter) in which one can upload images, 
 and then the detected white/brown eggs and the number of them will be shown.
@@ -91,6 +97,19 @@ It is good to mention that you can also run the demo application locally by runn
 streamlit run app.py
 ```
 and then open the browser and go to the address `http://localhost:8501`.
+
+## How to load Trained Model from Hugging Face
+The trained model is also uploaded to [hugging face](https://huggingface.co/afshin-dini/Egg-Detection) from which one can use it as following:
+```shell
+from huggingface_hub import hf_hub_download
+from ultralytics import YOLO
+
+model_path = hf_hub_download(repo_id="afshin-dini/Egg-Detection", filename="model/egg_detector.pt")
+model = YOLO(model_path)
+result = model("path/to/image")
+```
+Then, the uploaded model can be used for different purposes.
+
 
 ## Docker Container
 To run the docker with ssh, do the following first and then based on your need select ,test, development, or production containers:
