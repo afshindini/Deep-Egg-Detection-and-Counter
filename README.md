@@ -153,5 +153,3 @@ Then create a branch with `git checkout -b BRANCH_NAME` for further developments
 - Then `git add poetry.lock`.
 - Then `pre-commit install`.
 - For applying changes use `pre-commit run --all-files`.
-
-
