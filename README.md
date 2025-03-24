@@ -68,7 +68,7 @@ by running the `poetry install` command (Install poetry if you do not have it in
 
 ### Fine-Tuning
 YOLO model is fine-tuned with the collected dataset. In order to find-tune the model with other egg classes or repeat the whole process,
-once can download the dataset from [here](https://huggingface.co/datasets/afshin-dini/Egg-Detection) and put in the `src/egg_detection/data` directory.
+once can download the dataset from [here](https://huggingface.co/datasets/afshin-dini/Egg-Detection) and put in the `src/egg_detection_counter/data` directory.
 Then for training or fine-tuning the model, one can run the following command:
 ```bash
 egg_detection_counter -vv train --conf_path src/egg_detection_counter/data/data.yaml --img_resize 640 --batch_size 16 --epochs 100 --device cuda
@@ -78,7 +78,7 @@ egg_detection_counter -vv train --conf_path src/egg_detection_counter/data/data.
 The fine-tuned model can be used for inference purposes. The model is provided in the `src/egg_detection_counter/models` directory.
 By uploading and using the model, one can detect white/brown eggs and count them in an egg-shell. The model can be used with the following command:
 ```bash
-egg_detection_counter -vv infer --model_path src/egg_detection_counter/models/egg_detection_model.pt --data_path ./tests/test_data --result_path ./results
+egg_detection_counter -vv infer --model_path src/egg_detection_counter/model/egg_detector.pt --data_path ./tests/test_data --result_path ./results
 ```
 It is good to mention that, the `data_path` could be a directory containing images or a single image. The `result_path` is the directory where the results are saved.
 
@@ -93,7 +93,31 @@ streamlit run app.py
 and then open the browser and go to the address `http://localhost:8501`.
 
 ## Docker Container
-Under development.
+To run the docker with ssh, do the following first and then based on your need select ,test, development, or production containers:
+```shell
+export DOCKER_BUILDKIT=1
+export DOCKER_SSHAGENT="-v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK -e SSH_AUTH_SOCK"
+```
+### Test Container
+This container is used for testing purposes while it runs the test
+```shell
+docker build --progress plain --ssh default --target test -t egg_detection_docker:test .
+docker run -it --rm -v "$(pwd):/app" $(echo $DOCKER_SSHAGENT) egg_detection_docker:test
+```
+
+### Development Container
+This container can be used for development purposes:
+```shell
+docker build --progress plain --ssh default --target development -t egg_detection_docker:development .
+docker run -it --rm -v "$(pwd):/app" -v /tmp:/tmp $(echo $DOCKER_SSHAGENT) egg_detection_docker:development
+```
+
+### Production Container
+This container can be used for production purposes:
+```shell
+docker build --progress plain --ssh default --target production -t egg_detection_docker:production .
+docker run -it --rm -v "$(pwd):/app" -v /tmp:/tmp $(echo $DOCKER_SSHAGENT) egg_detection_docker:production egg_detection_counter -vv infer --model_path src/egg_detection_counter/model/egg_detector.pt --data_path ./tests/test_data --result_path ./results
+```
 
 
 ## How to Develop
