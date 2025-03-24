@@ -38,7 +38,7 @@ def egg_detection_counter_cli(verbose: int) -> None:
     "--conf_path",
     type=str,
     default="src/egg_detection_counter/data/data.yaml",
-    help="PAth to the config file",
+    help="Path to the config file",
 )
 @click.option(
     "--epochs", type=int, default=100, help="Number of epochs used in training."
