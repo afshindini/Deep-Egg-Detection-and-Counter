@@ -30,19 +30,25 @@ jobs:
           git rm --cached src/egg_detection_counter/model/egg_detector.pt
           git commit -m "Remove egg_detector.pt from regular Git tracking"
 
+      - name: Track .pt files with Git LFS
+        run: |
+          git lfs track "*.pt"
+          git add .gitattributes
+          git commit -m "Track .pt files with Git LFS"
+
       - name: Add remote
         env:
           HF: ${{ secrets.HG }}
         run: git remote add space https://afshin-dini:$HF@huggingface.co/spaces/afshin-dini/Deep-Egg-Detection-and-Counter
 
-      - name: Re-add .pt files using Git LFS
-        run: |
-          git add src/egg_detection_counter/model/egg_detector.pt
-          git commit -m "Re-add egg_detector.pt using Git LFS"
+#      - name: Re-add .pt files using Git LFS
+#        run: |
+#          git add src/egg_detection_counter/model/egg_detector.pt
+#          git commit -m "Re-add egg_detector.pt using Git LFS"
 
-      - name: reset commit
-        run: git filter-branch --index-filter --f "git rm -rf --cached --ignore-unmatch src/egg_detection_counter/model/egg_detector.pt" HEAD
-#        run: git filter-branch --force --index-filter "git rm --cached --ignore-unmatch src/egg_detection_counter/model/egg_detector.pt" --prune-empty --tag-name-filter cat -- --all
+#      - name: reset commit
+#        run: git filter-branch --index-filter --f "git rm -rf --cached --ignore-unmatch src/egg_detection_counter/model/egg_detector.pt" HEAD
+##        run: git filter-branch --force --index-filter "git rm --cached --ignore-unmatch src/egg_detection_counter/model/egg_detector.pt" --prune-empty --tag-name-filter cat -- --all
 
       - name: Push to hub
         env:
