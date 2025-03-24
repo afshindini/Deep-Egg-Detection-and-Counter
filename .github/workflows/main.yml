@@ -25,9 +25,6 @@ jobs:
           git config --global user.name "afshindini"
           git config --global user.email "afshin_dini@yahoo.com"
 
-      - name: reset commit
-        run: git filter-branch --force --index-filter "git rm --cached --ignore-unmatch src/egg_detection_counter/model/egg_detector.pt" --prune-empty --tag-name-filter cat -- --all
-
       - name: Remove .pt files from Git regular tracking
         run: |
           git rm --cached src/egg_detection_counter/model/egg_detector.pt
@@ -42,6 +39,9 @@ jobs:
         run: |
           git add src/egg_detection_counter/model/egg_detector.pt
           git commit -m "Re-add egg_detector.pt using Git LFS"
+
+      - name: reset commit
+        run: git filter-branch --force --index-filter "git rm --cached --ignore-unmatch src/egg_detection_counter/model/egg_detector.pt" --prune-empty --tag-name-filter cat -- --all
 
       - name: Push to hub
         env:
