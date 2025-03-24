@@ -20,6 +20,11 @@ jobs:
         run: |
           git lfs install
 
+      - name: Configure Git user
+        run: |
+          git config --global user.name "afshindini"
+          git config --global user.email "afshin_dini@yahoo.com"
+
       - name: Remove .pt files from Git regular tracking
         run: |
           git rm --cached src/egg_detection_counter/model/egg_detector.pt
