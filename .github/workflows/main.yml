@@ -41,7 +41,8 @@ jobs:
           git commit -m "Re-add egg_detector.pt using Git LFS"
 
       - name: reset commit
-        run: git filter-branch --force --index-filter "git rm --cached --ignore-unmatch src/egg_detection_counter/model/egg_detector.pt" --prune-empty --tag-name-filter cat -- --all
+        run: git filter-branch --index-filter --f "git rm -rf --cached --ignore-unmatch src/egg_detection_counter/model/egg_detector.pt" HEAD
+#        run: git filter-branch --force --index-filter "git rm --cached --ignore-unmatch src/egg_detection_counter/model/egg_detector.pt" --prune-empty --tag-name-filter cat -- --all
 
       - name: Push to hub
         env:
