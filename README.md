@@ -1,6 +1,6 @@
 ---
 title: Deep Egg Detection And Counter
-emoji: ⚡
+emoji: 🥚
 colorFrom: green
 colorTo: pink
 sdk: streamlit
